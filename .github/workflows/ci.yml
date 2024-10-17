@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: Dependencias
         run: |
-          cd $GITHUB_WORKSPACE
+          cd /home/runner/work/jjorge
           npm install --prefer-offline --no-audit
 
   test:
@@ -57,7 +57,7 @@ jobs:
     steps:
       - name: Testes
         run: |
-          cd $GITHUB_WORKSPACE
+          cd /home/runner/work/jjorge
           npm test
 
   format:
@@ -67,7 +67,7 @@ jobs:
     steps:
       - name: Prettier
         run: |
-          cd $GITHUB_WORKSPACE
+          cd /home/runner/work/jjorge
           npm run prettier
 
   build:
@@ -77,5 +77,5 @@ jobs:
     steps:
       - name: Build da App
         run: |
-          cd $GITHUB_WORKSPACE
+          cd /home/runner/work/jjorge
           npm run build
