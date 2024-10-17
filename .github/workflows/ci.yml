@@ -43,7 +43,8 @@ jobs:
 
     steps:
       - name: Dependencias
-        run: npm ci --prefer-offline --no-audit
+        run: npm install --prefer-offline --no-audit
+
 
   test:
     runs-on: ubuntu-latest
