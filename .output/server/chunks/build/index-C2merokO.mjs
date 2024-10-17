@@ -1,12 +1,11 @@
-import { ref, watchEffect, watch, getCurrentInstance } from 'vue';
-import { i as injectHead, d as resolveUnrefHeadInput } from './server.mjs';
-import { composableNames } from '@unhead/shared';
+import { ref, watchEffect, watch, getCurrentInstance } from "vue";
+import { i as injectHead, d as resolveUnrefHeadInput } from "./server.mjs";
+import { composableNames } from "@unhead/shared";
 
 function useHead(input, options = {}) {
   const head = options.head || injectHead();
   if (head) {
-    if (!head.ssr)
-      return clientUseHead(head, input, options);
+    if (!head.ssr) return clientUseHead(head, input, options);
     return head.push(input, options);
   }
 }
@@ -23,11 +22,9 @@ function clientUseHead(head, input, options = {}) {
   getCurrentInstance();
   return entry;
 }
-const coreComposableNames = [
-  "injectHead"
-];
+const coreComposableNames = ["injectHead"];
 ({
-  "@unhead/vue": [...coreComposableNames, ...composableNames]
+  "@unhead/vue": [...coreComposableNames, ...composableNames],
 });
 
 export { useHead as u };
