@@ -46,7 +46,7 @@ jobs:
 
     steps:
       - name: Dependencias
-        run: npm install --prefer-offline --no-audit --prefix $GITHUB_WORKSPACE
+        run: npm install --prefer-offline --no-audit $GITHUB_WORKSPACE
 
 
   test:
