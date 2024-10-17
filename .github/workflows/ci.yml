@@ -8,7 +8,6 @@ on:
   pull_request:
     branches:
       - '**'
-
 jobs:
   install-dependencies:
     name: Install Dependencies
@@ -85,3 +84,4 @@ jobs:
 
       - name: Run Prettier
         run: npx prettier --write .
+
