@@ -18,6 +18,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Lista de Ficheiros
+        run: ls -la  
 
   setup:
     runs-on: ubuntu-latest
