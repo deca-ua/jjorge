@@ -1,16 +1,13 @@
-# Nome da Pipeline
 name: pipeline_TDW-02
 
-# Quando a pipeline vai correr. Sempre que houver commit para qualquer branch (push) ou sempre que houver um pull request para qualquer branch
 on:
   push:
     branches:
-      - ''
+      - '**'
   pull_request:
     branches:
-      - ''
+      - '**'
 
-# Definição dos jobs que vão correr em paralelo
 jobs:
   install-dependencies:
     name: Install Dependencies
@@ -24,19 +21,16 @@ jobs:
         with:
           node-version: '18'
 
-      # Limpar a cache (opcional)
       - name: Clear npm cache
         run: npm cache clean --force
 
-      # Instalar todas as dependências
       - name: Install dependencies
         run: npm install
-        working-directory: ./P03
 
   run-tests:
     name: Run Tests
     runs-on: ubuntu-latest
-    needs: install-dependencies  # Isto depende de install-dependencies
+    needs: install-dependencies
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -46,53 +40,17 @@ jobs:
         with:
           node-version: '18'
 
-      # Instalar Jest
       - name: Install Jest
         run: npm install jest
-        working-directory: ./aula_02-10
 
-      # Correr todos os testes automáticos
       - name: Run tests
-        run: npm test -- -u 
-        working-directory: ./aula_02-10
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./aula_02-10/coverage/coverage-final.json
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: true
-
-  format-code:
-    name: Format Code with Prettier
-    runs-on: ubuntu-latest
-    needs: run-tests  # Isto depende da passagem dos testes
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      # Instalar Prettier
-      - name: Install Prettier
-        run: npm install prettier
-        working-directory: ./aula_02-10
-
-      # Formatar o código
-      - name: Run Prettier
-        run: npx prettier --write .
-        working-directory: ./aula_02-10
+        run: npm test
 
   build-project:
     name: Build Project
     runs-on: ubuntu-latest
-    needs: format-code  # Isto depende da formatação do código
-    if: success()  # Só vai se bem sucedido
+    needs: run-tests
+    if: success()
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -101,3 +59,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+
+      - name: Install Nuxt.js
+        run: npm install nuxt
+
+      - name: Build project
+        run: npm run build
