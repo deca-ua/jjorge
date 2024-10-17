@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: Dependencias
         run: |
-          cd /home/runner/work
+          cd /home
           npm install --prefer-offline --no-audit
 
   test:
@@ -57,7 +57,7 @@ jobs:
     steps:
       - name: Testes
         run: |
-          cd ./jjorge
+          cd /home
           npm test
 
   format:
@@ -67,7 +67,7 @@ jobs:
     steps:
       - name: Prettier
         run: |
-          cd ./jjorge
+          cd /home
           npm run prettier
 
   build:
