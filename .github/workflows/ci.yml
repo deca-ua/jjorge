@@ -45,6 +45,11 @@ jobs:
     needs: setup
 
     steps:
+      - name: Change to project directory
+        run: cd $GITHUB_WORKSPACE
+
+
+
       - name: Dependencias
         run: npm install --prefer-offline --no-audit
 
