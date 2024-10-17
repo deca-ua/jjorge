@@ -10,22 +10,22 @@
     "test": "jest"
   },
   "dependencies": {
+    "@unhead/shared": "^1.11.10",
     "core-js": "^3.25.3",
     "nuxt": "^3.13.2",
-    "vue-server-renderer": "^2.2.6"
+    "ufo": "^1.5.4",
+    "vite": "^5.4.9",
+    "vue": "^3.5.12"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.25.8",
     "@nuxtjs/tailwindcss": "^5.3.3",
-    "@vue/test-utils": "^1.0.0-beta.31",
-    "@vue/vue2-jest": "^29.2.6",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/vue3-jest": "^29.2.6",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^29.1.2",
-    "jest": "^29.1.2",
+    "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.1.2",
-    "postcss": "^8.4.17",
-    "vue": "^2.6.14",
-    "vue-jest": "^2.6.0",
-    "vue-template-compiler": "^2.6.14"
+    "postcss": "^8.4.17"
   }
 }
