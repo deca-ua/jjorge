@@ -20,7 +20,6 @@ jobs:
 
       - name: Lista de Ficheiros
         run: ls -la
-        working-directory: ${{ github.workspace }}
 
   setup:
     runs-on: ubuntu-latest
@@ -32,7 +31,6 @@ jobs:
         with:
           node-version: 'lts/*'
           check-latest: true
-        working-directory: ${{ github.workspace }}
 
       - name: node_modules 
         uses: actions/cache@v2.1.7
@@ -41,7 +39,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-        working-directory: ${{ github.workspace }}
 
   install:
     runs-on: ubuntu-latest
@@ -49,8 +46,9 @@ jobs:
 
     steps:
       - name: Dependencias
-        run: npm install --prefer-offline --no-audit
-        working-directory: ${{ github.workspace }}
+        run: |
+          cd $GITHUB_WORKSPACE
+          npm install --prefer-offline --no-audit
 
   test:
     runs-on: ubuntu-latest
@@ -58,8 +56,9 @@ jobs:
 
     steps:
       - name: Testes
-        run: npm test
-        working-directory: ${{ github.workspace }}
+        run: |
+          cd $GITHUB_WORKSPACE
+          npm test
 
   format:
     runs-on: ubuntu-latest
@@ -67,8 +66,9 @@ jobs:
 
     steps:
       - name: Prettier
-        run: npm run prettier
-        working-directory: ${{ github.workspace }}
+        run: |
+          cd $GITHUB_WORKSPACE
+          npm run prettier
 
   build:
     runs-on: ubuntu-latest
@@ -76,5 +76,6 @@ jobs:
 
     steps:
       - name: Build da App
-        run: npm run build
-        working-directory: ${{ github.workspace }}
+        run: |
+          cd $GITHUB_WORKSPACE
+          npm run build
