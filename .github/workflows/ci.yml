@@ -1,6 +1,8 @@
 name: pipeline_TDW-02
 
 on:
+  schedule:
+    - cron: '0 0 * * *'
   push:
     branches:
       - '**'
