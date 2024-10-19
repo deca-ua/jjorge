@@ -2,8 +2,8 @@ name: Cronitor Monitoring Relay
 
 on:
   workflow_run:
-    workflows: ['*']
-    types: [requested,completed]
+    workflows: ["*"]
+    types: [requested, completed]
 
 jobs:
   send-telemetry:
