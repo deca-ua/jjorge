@@ -30,10 +30,15 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ["@nuxtjs/sanity"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  sanity: {
+    projectId: "rhtxrjqg",
+    dataset: "production",
+  },
 
   compatibilityDate: "2024-10-17",
 };
