@@ -112,7 +112,7 @@ jobs:
 
       - name: Check for updates
         run: |
-          response=$(curl -s -X POST https://miniprojeto-joaojorge.vercel.app/api/webhook)
+          response=$(curl -s -X POST https://jjorge-andrecj2002s-projects.vercel.app/api/webhook)
           echo "$response"
           if echo "$response" | grep -q "Update received"; then
             echo "Update found, running pipeline..."
