@@ -103,24 +103,23 @@ jobs:
       - name: Deploy to Vercel
         run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm --cwd ./
 
-        webhook-no-sanity:
-          name: Webhook no Sanity
-          runs-on: ubuntu-latest
-          steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
-      
-            - name: Check for updates
-              run: |
-                response=$(curl -s -X POST https://jjorge-andrecj2002s-projects.vercel.app/api/webhook)
-                echo "$response"
-                if echo "$response" | grep -q "Update received"; then
-                  echo "Update found, running pipeline..."
-                  # Aqui você pode adicionar os passos que deseja executar após a atualização
-                  # Por exemplo:
-                  # - name: Build and Deploy
-                  #   run: npm run build && npm run deploy
-                else
-                  echo "No updates found."
-      
+  webhook-no-sanity:
+    name: Webhook no Sanity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check for updates
+        run: |
+          response=$(curl -s -X POST https://jjorge-andrecj2002s-projects.vercel.app/api/webhook)
+          echo "$response"
+          if echo "$response" | grep -q "Update received"; then
+            echo "Update found, running pipeline..."
+            # Aqui você pode adicionar os passos que deseja executar após a atualização
+            # Por exemplo:
+            # - name: Build and Deploy
+            #   run: npm run build && npm run deploy
+          else
+            echo "No updates found."
 
