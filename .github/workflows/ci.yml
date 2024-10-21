@@ -113,7 +113,8 @@ jobs:
       - name: Check for updates
         run: |
           response=$(curl -s -X POST https://miniprojeto-joaojorge.vercel.app/api/webhook)
-          if echo "$response" | grep "Update received"; then
+          echo "$response"
+          if echo "$response" | grep -q "Update received"; then
             echo "Update found, running pipeline..."
             # Adicione os passos necessários aqui, por exemplo:
             # - name: Build and Deploy
