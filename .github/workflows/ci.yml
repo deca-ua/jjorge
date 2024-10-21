@@ -125,12 +125,6 @@ jobs:
           echo "$response"
           if echo "$response" | grep -q "Update received"; then
             echo "Update found, running pipeline..."
-            
-            # Executar o build e deploy se a atualização for detectada
-            echo "Running build..."
-            npm run build
-
-            echo "Deploying..."
-            npm run deploy
           else
             echo "No updates found."
+          fi
