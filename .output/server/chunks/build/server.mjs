@@ -510,10 +510,7 @@ const navigateTo = (to, options) => {
         return to;
       }
       return redirect(
-        !inMiddleware
-          ? void 0
-          : /* abort route navigation */
-            false,
+        !inMiddleware ? void 0 : /* abort route navigation */ false,
       );
     }
   }
