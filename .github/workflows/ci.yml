@@ -116,10 +116,13 @@ jobs:
           echo "$response"
           if echo "$response" | grep -q "Update received"; then
             echo "Update found, running pipeline..."
-            # Aqui você pode adicionar os passos que deseja executar após a atualização
-            # Por exemplo:
-            # - name: Build and Deploy
-            #   run: npm run build && npm run deploy
+            
+            # Executar o build e deploy se a atualização for detectada
+            echo "Running build..."
+            npm run build
+
+            echo "Deploying..."
+            npm run deploy
           else
             echo "No updates found."
-
+          fi
