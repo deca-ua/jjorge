@@ -2,7 +2,7 @@ name: pipeline_TDW-02
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *' # Executa diariamente à meia-noite
   push:
     branches:
       - '**'
@@ -103,4 +103,20 @@ jobs:
       - name: Deploy to Vercel
         run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm --cwd ./
 
-      
+  webhook-no-sanity:
+    name: Check Sanity Updates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check for updates
+        run: |
+          response=$(curl -s -X POST https://miniprojeto-joaojorge.vercel.app/api/webhook)
+          if echo "$response" | grep "Update received"; then
+            echo "Update found, running pipeline..."
+            # Adicione os passos necessários aqui, por exemplo:
+            # - name: Build and Deploy
+            #   run: npm run build && npm run deploy
+          else
+            echo "No updates found."
