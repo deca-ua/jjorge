@@ -104,7 +104,7 @@ jobs:
         run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm --cwd ./
 
   webhook-no-sanity:
-    name: Check Sanity Updates
+    name: Webhook no Sanity
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
